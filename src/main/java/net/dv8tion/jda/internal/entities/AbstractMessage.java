@@ -26,6 +26,7 @@ import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import net.dv8tion.jda.api.requests.restaction.pagination.ReactionPaginationAction;
 import net.dv8tion.jda.internal.utils.Helpers;
 import org.apache.commons.collections4.Bag;
+import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -68,7 +69,8 @@ public abstract class AbstractMessage implements Message
         return isTTS;
     }
 
-    protected abstract void unsupported();
+    @Contract("-> fail")
+    protected abstract void unsupported() throws UnsupportedOperationException;
 
     @Override
     public void formatTo(Formatter formatter, int flags, int width, int precision)
